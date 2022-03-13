@@ -4,15 +4,166 @@
 
 {% load crispy_forms_tags %}         
 
-<!--Register--> 
+<!--Register-->
+
+<style>
+  body {
+    font-family: sans-serif;
+	margin: 0 auto;
+}
+
+.form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, .7);
+}
+
+.form h1 {
+    margin: 30px 100px;
+    padding: 0;
+    text-align: center;
+    color: #fff;
+    font-size: 30px;
+    text-transform: uppercase;
+}
+
+.reg {
+    margin: 30px 100px;
+    padding: 0;
+    text-align: center;
+    color: #fff;
+    font-size: 30px;
+    text-transform: uppercase;
+}
+
+.controls {
+    margin: 15px 40px;
+    text-align: center;
+}
+
+.controls input {
+    padding: 10px;
+    width: 100%;
+    color: #fff;
+    font-size: 20px;
+    background: none;
+    outline: none;
+    border: 1px solid #fff;
+    box-sizing: border-box;
+}
+
+#div_id_password {
+    margin: 15px 40px;
+    text-align: center;
+}
+
+#div_id_password input {
+    padding: 10px;
+    width: 100%;
+    color: #fff;
+    font-size: 20px;
+    background: none;
+    outline: none;
+    border: 1px solid #fff;
+    box-sizing: border-box;
+}
+
+.control-group {
+    text-align: center;
+    color: #fff;
+    font-family: sans-serif;
+}
+
+.control-label {
+	font-size: 20px;
+	text-shadow: 1px, 2px, 1px, 2px;
+}
+
+#div_id_username input[type="text"]:focus,
+#div_id_password input[type="password"]:focus {
+    border: 1px solid #5200a5;
+}
+
+.controls ul li{
+	text-align: left;
+}
+
+.input-form input[type="submit"] {
+    margin-top: 20px;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: none;
+    background: #5200a5;
+    transition: .3s;
+}
+
+.input-form input[type="submit"]:hover {
+    background: #5200a5;
+}
+
+.form a {
+    display: block;
+    padding: 0 0 30px;
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+    transition: .3s;
+}
+
+.form a:hover {
+    color: #5200a5;
+}
+
+button {
+    cursor: pointer;
+    padding: 10px 30px;
+    height: 50px;
+    color: #fff;
+    background: #5200a5;
+    border: none;
+    text-transform: uppercase;
+    font-size: 15px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.82);
+}
+
+button:hover {
+    opacity: .80;
+    font-weight: bold;
+    transform: scale(1.1);
+}
+
+.group {
+    margin: 10px;
+    padding: 5px;
+}
+
+#logtext {
+    display: block;
+    padding: 10px 0 10px 0;
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+    transition: .3s;
+}
+</style>
+
 <div class="container py-5">
+	<div class="form">
 	<h1>Register</h1>
 	<form method="POST">
 		{% csrf_token %}
 		{{ register_form|crispy }}                    
-		<button class="btn btn-primary" type="submit">Register</button>
+		<div class="group">
+			<center><button>Registration</button></center>
+		</div>
+        <div class="login">
+            <a href="/login" class="login">Already have an account?</a>
+        </div>
+		</div>
 	</form>
-	<p class="text-center">If you already have an account, <a href="/login">login</a> instead.</p>
 </div>
 
 {% endblock %}
