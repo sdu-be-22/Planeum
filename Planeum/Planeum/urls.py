@@ -21,4 +21,5 @@ urlpatterns = [
     path('', include('home.urls')),
     path('register/', include('register.urls')),
     path('login/', include('login.urls')),
+    path('chat/', include('chat.urls')),
 ]
