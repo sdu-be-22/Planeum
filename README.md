@@ -6,5 +6,5 @@ current ready pages:\
 /admin\
 /login\
 /register
-/home    (post-news)
-/chat
+/home    (post-news)\
+/chat\
