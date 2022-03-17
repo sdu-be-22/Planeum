@@ -1,0 +1,61 @@
+{% extends "header.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<style>
+body{
+    background-color:#5200a5;
+    color: #fff;
+}
+
+.textarea{
+    width:100%;
+    height:100%;
+}
+
+.card-body{
+    color: #000;
+}
+
+.time {
+    font-size: 12px !important
+    }
+</style>    
+
+<div class="container">
+    <div class="row justify-content-center mt-3">
+        <div class="newstitle">
+            <h1>NEWS</h1>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-3">
+        <div class="border-bottom">
+            <h5>Create a new POST</h5>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-3 mb-5">
+        <div class="col-md-5 col-sm-12 border-bottom">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form | crispy }}
+                <div class="row justify-content-center mt-3 mb-5">
+                    <button class="btn btn-success mt-3">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    {% for post in post_list %}
+    <div class="row justify-content-center mt-3">
+        <div class="card col-md-5 col-sm-12">
+            <div class="card-body">
+            <h4 class="card-title"><strong>{{ post.author }}</strong> <br> <span class="text-black-50 time">{{ post.created_on }}</span></h4>
+            <p class="card-text">{{ post.body }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}

@@ -1,20 +1,29 @@
 from multiprocessing import context
 from django.shortcuts import render
-from django.http import HttpRequest, HttpResponse
 from django.views import View
 from .models import Post
+from .forms import PostForm
 # Create your views here.
-def homepage(request):
-    return render(request=request, template_name='home.html')
-def yes(request):
-    return HttpRequest("sss")
-
-
 
 class PostListView(View):
     def get(self,request, *args, **kwargs):
         posts = Post.objects.all().order_by('created_on')
+        form = PostForm()
         context = {'post_list':posts,
         
         }
         return render(request,'home/post_list.html', context)
+    
+    def post(self,request, *args, **kwargs):
+        posts = Post.objects.all().order_by('-created_on')
+        form = PostForm(request.POST)
+        
+        if form.is_valid():
+            new_post = form.save(commit=False)
+            new_post.author = request.user
+            new_post.save()
+            
+        context = {'post_list': posts,
+                       'form': form,
+                }
+        return render(request, 'post_list.html', context)
