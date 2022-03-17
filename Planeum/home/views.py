@@ -12,7 +12,7 @@ class PostListView(View):
         context = {'post_list':posts,
         
         }
-        return render(request,'home/post_list.html', context)
+        return render(request,'templates/post_list.html', context)
     
     def post(self,request, *args, **kwargs):
         posts = Post.objects.all().order_by('-created_on')
@@ -26,4 +26,4 @@ class PostListView(View):
         context = {'post_list': posts,
                        'form': form,
                 }
-        return render(request, 'post_list.html', context)
+        return render(request, 'templates/post_list.html', context)
