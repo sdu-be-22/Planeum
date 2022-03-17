@@ -5,6 +5,6 @@ https://miro.com/welcomeonboard/d0RqblBrTEV5NkVHbUR6ZFlLeGpmeUt6MEpNTjNBNkJGdnZ1
 current ready pages:\
 /admin\
 /login\
-/register
+/register\
 /home    (post-news)\
-/chat\
+/chat
