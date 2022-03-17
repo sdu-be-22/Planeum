@@ -1,0 +1,131 @@
+{% extends 'todo/base.html' %} {% load static %} {% block header %}
+<link rel="stylesheet" href="{% static 'css/checkbox-css.css' %}">
+<style>
+    ul
+</style>
+{% endblock %} {% block content %}
+<div class="w-100 h-100 d-flex justify-content-center align-items-center">
+    <div class="col-md-6">
+        <h1>My Todo List</h1>
+        <hr class="border-primary">
+        <!-- <table class="table text-light">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Date Added</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for todo in Todos %}
+                <tr>
+                    <td>{{todo.title}}</td>
+                    <td>{{todo.description}}</td>
+                    <td>{{todo.date_created|date:"M j, Y h:i A"}}</td>
+                </tr>
+                {% endfor%}
+            </tbody>
+        </table> -->
+        {% if messages %} {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button> {{ message | safe }}
+        </div>
+        {% endfor %} {% endif %}
+        <div id="ajax-msg"></div>
+        <ul class='list-group bg-dark text-light' id="todoList">
+            {% for todo in Todos %}
+            <li class="list-group-item list-group-item-dark bg-dark text-light border-primary">
+                <div class="w-100 d-flex justify-content-between align-items-center">
+                    <div class="d-flex  justify-content-start align-items-center form-group">
+                        {% if todo.status == 1 %}
+                        <input type="checkbox" value="{{todo.id}}" name="todoChk" id="todo-chk-{{todo.id}}" class="todoChk" checked data-status="{{todo.status}}"> {% else %}
+                        <input type="checkbox" value="{{todo.id}}" name="todoChk" id="todo-chk-{{todo.id}}" class="todoChk" data-status="{{todo.status}}"> {% endif %}
+                        <label for="todo-chk-{{todo.id}}">{{todo.title}}</label>
+                    </div>
+                    <div class="d-flex justify-content-start align-items-center ">
+                        <span> 
+                            <a href="#todo-item-{{todo.id}}" class="mr-4 collapsed text-muted" data-toggle="collapse" data-target="#todo-item-{{todo.id}}" style="font-size: 26px;" aria-expanded="false" aria-controls="todo-item-{{todo.id}}">
+                        <span class="fa fa-angle-down"></span>
+                        </a>
+                        </span>
+                        <div class="dropleft">
+                            <button class="border-0 p-0 m-0 bg-none text-light" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                         <i class="fa fa-ellipsis-v"></i>
+                        </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="/manage_todo?id={{todo.id}}">Edit</a>
+                                <a class="dropdown-item delete" href="javascript:void(0)" data-id={{todo.id}}>Delete</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div id="todo-item-{{todo.id}}" class="collapse w-100" aria-labelledby="{{todo.title}}" data-parent="#todoList">
+                    <hr class="border-primary">
+                    <p><i>{{todo.description}}</i></p>
+                </div>
+            </li>
+            {% endfor%}
+        </ul>
+    </div>
+</div>
+<script>
+    $(function() {
+        $('[name="todoChk"]').each(function() {
+            $(this).change(function() {
+                var id = $(this).val()
+                var checked = $(this).is(":checked")
+                var _this = $(this)
+                    // console.log(id, checked)
+                $.ajax({
+                    headers: {
+                        "X-CSRFToken": '{{csrf_token}}'
+                    },
+                    url: "ajax_update_state",
+                    method: "POST",
+                    data: {
+                        id: id,
+                        checked: checked
+                    },
+                    dataType: "json",
+                    error: err => {
+                        consol.log(err)
+                        _this.prop("checked", !checked)
+                        alert('an error occured')
+                    },
+                    success: function(resp) {
+                        if (typeof resp == "object") {
+                            if (resp.status == 'success') {
+                                var _alert = '<div class="alert alert-info alert-dismissible" role="alert">' +
+                                    '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                                    ' <span aria-hidden="true">&times;</span>' +
+                                    ' </button> State Successfully Updated.' +
+                                    '</div>';
+                                console.log(_alert)
+                                $('#ajax-msg').hide()
+                                $('#ajax-msg').html(_alert)
+                                $('#ajax-msg').show('slideDown')
+                                setTimeout(function() {
+                                    $('#ajax-msg').hide().html("")
+                                }, 5000)
+                            } else {
+                                _this.prop("checked", !checked)
+                                alert('an error occured')
+                            }
+                        }
+                    }
+                })
+            })
+        })
+        $('.delete').click(function() {
+            var id = $(this).attr('data-id')
+            var conf = confirm("Are you sure to delete the selected Todo Item permanently?")
+
+            if (conf == true)
+                location.href = 'remove_todo?id=' + id
+        })
+    })
+</script>
+{% endblock %}
