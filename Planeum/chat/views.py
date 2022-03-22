@@ -34,7 +34,7 @@ def send(request):
     new_message.save()
     return HttpResponse("Message send successfuly")
     
-def getMessages(request, room):
+def get_messages(request, room):
     room_details = Room.objects.get(name=room)
 
     messages = Message.objects.filter(room=room_details.id)

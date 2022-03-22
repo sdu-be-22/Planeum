@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <title></title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 body {
@@ -60,20 +61,20 @@ body {
 
 <div id="display">
 
-<!-- <div class="container darker">
-  <b>Tom</b><p>Hello Everyone, How Are You Guys Doing?</p>
+<div class="container darker">
+  <strong>Tom</strong><p>Hello Everyone, How Are You Guys Doing?</p>
   <span class="time-left">20th, April 2021</span>
-</div> -->
+</div>
 
 </div>
 
-<!--<script>
+<script>
 $(document).ready(function(){
 
 setInterval(function(){
     $.ajax({
         type: 'GET',
-        url : "/chat/getMessages/{{room}}/",
+        url : "/chat/get_messages/{{room}}/",
         success: function(response){
             console.log(response);
             $("#display").empty();
@@ -89,7 +90,7 @@ setInterval(function(){
     });
 },1000);
 })
-</script>-->
+</script>
 
 
 <div class="container">
