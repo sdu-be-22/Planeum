@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'newsfeed',
     'chat',
     'login.apps.LoginConfig',
     'register.apps.RegisterConfig',
