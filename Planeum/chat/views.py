@@ -7,11 +7,11 @@ def chathome(request):
 
 def room(request, room):
     username = request.GET.get('username')
-    room_datails = Room.objects.get(name=room)
+    room_details = Room.objects.get(name=room)
     return render(request, 'room.html', {
         'username':username,
         'room':room,
-        'room_datails':room_datails
+        'room_details':room_details
     })
 
 def checkview(request):
