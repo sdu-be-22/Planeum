@@ -10,11 +10,12 @@
   }
 
   .container {
-    border: 2px solid #dedede;
+    border: 2px solid  rgba(0, 0, 0, 0.7);
     background-color: #f1f1f1;
     border-radius: 5px;
     padding: 10px;
     margin: 10px 0;
+    color: white;
   }
 
   .darker {
@@ -55,19 +56,19 @@
 </head>
 <body>
 
-<div align="center">
-    <h2>Django Chat</h2>
+<div align="center" style=" color:white;">
+    <h2>Chat</h2>
 </div>
 
 
-<div class="container">
+<div class="container" id="cont">
     <style>
       input[type=text], select {
         width: 100%;
         padding: 12px 20px;
         margin: 8px 0;
         display: inline-block;
-        border: 1px solid #ccc;
+        border: 1px solid  rgba(0, 0, 0, 0.7);
         border-radius: 4px;
         box-sizing: border-box;
       }
@@ -75,7 +76,7 @@
       input[type=submit] {
         width: 100%;
         color: white;
-        background-color: #4CAF50;
+        background-color: #ffc107;
         padding: 14px 20px;
         margin: 8px 0;
         border: none;
@@ -88,18 +89,26 @@
 
       div {
         border-radius: 5px;
-        background-color: #f2f2f2;
+        background-color: #5200a5;
         padding: 20px;
+      }
+      body{
+        background-color: #6f42c1;
+      }
+      #cont{
+        background-color: rgba(0, 0, 0, 0.7);
       }
     </style>
 
     <form id="post-form" method="POST" action="checkview">
         {% csrf_token %}
-        <label>Room Name</label>
-        <input type="text" name="room_name" id="room_name" width="100px"/>
-        <label>Username</label>
-        <input type="text" name="username" id="username" width="100px"/>
-        <input type="submit" id="submit" value="Enter Room" >
+        
+          <label>Room Name</label>
+          <input type="text" name="room_name" id="room_name" width="100px"/>
+          <label>Username</label>
+          <input type="text" name="username" id="username" width="100px"/>
+          <input type="submit" id="submit" value="Enter Room" >
+        
     </form>
 </div>
 
