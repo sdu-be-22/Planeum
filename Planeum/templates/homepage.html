@@ -7,27 +7,6 @@ body{
   background-color: #5200a5;
 }
 
-.header {
-  background-color: rgba(0, 0, 0, 0.3);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  width: 100%;
-  transition: background 0.2s linear;
-}
-.header__inner {
-  height: 65px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.header__inner img {
-  height: 50px;
-  border-radius: 50%;
-}
-
 .flex-container2 {
   display: flex;
   margin: 100px;
@@ -126,55 +105,7 @@ body{
 }	
 </style>
 
-<body>
-	<header class="header">
-        <div class="container">
-            <div class="header__inner">
-                <a href="#">
-                    <img class="img" src=".jpg" alt="" width="50">
-                </a>
-
-                <nav class="nav">
-                    <a class="nav__link" href="/chat">
-						<div style="margin-left: 200px;">
-							<button class="btn btn-outline-warning">
-								Dialogs
-							</button>
-						</div>
-					</a>
-                    <a class="nav__link" href="#">
-						<div>
-							<button class="btn btn-outline-warning">
-								To-do list
-							</button>
-						</div>	
-					</a>
-                    <a class="nav__link" href="/newsfeed">
-						<div>
-							<button class="btn btn-outline-warning">
-							News
-						    </button>
-					    </div>
-					</a>
-					<a class="nav__link" href="/register">
-						<div>
-							<button class="btn btn-outline-warning">
-							Sign Up
-						    </button>
-					    </div>
-					</a>
-					<a class="nav__link" href="/login">
-						<div>
-							<button class="btn btn-outline-warning">
-							Sign In
-						    </button>
-					    </div>
-					</a>
-                </nav>
-            </div>
-        </div>
-    </header>
-	
+<body>	
 	<div class="flex-container2">
 		<div style="color: white;">
 			<h6>
