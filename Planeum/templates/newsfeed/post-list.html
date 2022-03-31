@@ -19,7 +19,7 @@ body{
 }
 
 .time {
-    font-size: 12px !important
+    font-size: 10px !important
     }
 </style>    
 
@@ -53,6 +53,7 @@ body{
             <div class="card-body">
             <h4 class="card-title"><strong>{{ post.author }}</strong> <br> <span class="text-black-50 time">{{ post.created_on }}</span></h4>
             <p class="card-text">{{ post.body }}</p>
+            <a class="stretched-link" href="{% url 'post-detail' post.pk %}"></a>
             </div>
         </div>
     </div>
