@@ -1,6 +1,6 @@
 <style>
 body{
-  background-color: #5200a5;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .navbar-nav {
@@ -13,7 +13,7 @@ body{
 <body>    
 <div class="navbar navbar-expand-lg" id="navbar" style="background-color: rgba(0, 0, 0, 0.3); justify-content: space-between;">	
 	<div class="container">
-		<a class="navbar-brand" href="/">Planeum</a>
+		<a class="navbar-brand" href="/" style="color: #fff;">Planeum</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -30,12 +30,37 @@ body{
 				<a class="nav-link" href="/newsfeed"><button class="btn btn-outline-warning">News</button></a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" id="signup" href="/register"><button class="btn btn-outline-warning">Sign Up</button></a>
+				<a class="nav-link" id="signup" href="{% url 'account_signup' %}"><button class="btn btn-outline-warning">Sign Up</button></a>
 			</li>			
 			<li class="nav-item">
-				<a class="nav-link" id="signin" href="/login"><button class="btn btn-outline-warning">Sign In</button></a>
+				<a class="nav-link" id="signin" href="{% url 'account_login' %}"><button class="btn btn-outline-warning">Sign In</button></a>
 			</li>
 			</ul>
+
+			{% if user.is_authenticated %}
+			<style>
+				#signup{
+					display:none;
+				}
+				#signin{
+					display:none;
+				}
+			</style>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<i class="bi bi-person-workspace"></i>
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="#">Profile</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="{% url 'account_logout' %}">Sign Out</a>
+					</div>
+				</li>
+			</ul>
+			</div>
+          {% endif %}
 
 		</div>
 	</div>
