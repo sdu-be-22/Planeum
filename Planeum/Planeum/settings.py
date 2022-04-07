@@ -43,6 +43,8 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 INSTALLED_APPS = [
+    'todo',
+
     'newsfeed',
     'chat',
     
