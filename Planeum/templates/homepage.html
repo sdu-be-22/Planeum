@@ -4,28 +4,7 @@
 
 <style>
 body{
-  background-color: #5200a5;
-}
-
-.header {
-  background-color: rgba(0, 0, 0, 0.3);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  width: 100%;
-  transition: background 0.2s linear;
-}
-.header__inner {
-  height: 65px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.header__inner img {
-  height: 50px;
-  border-radius: 50%;
+	background-image: linear-gradient(75deg, rgb(82,0,165), rgba(63,94,251,1));
 }
 
 .flex-container2 {
@@ -55,25 +34,6 @@ body{
   text-align: center;
 }
 
-.flex-container4 {
-  display: flex;
-  margin: 50px;
-  margin-left: 20px;
-  margin-right: 20px;
-  background-color: rgb(45, 1, 45);;
-  border-radius: 20px;
-}
-
-.flex-container4 > div {
-  margin: 10px;
-  display: inline;
-  margin-left: 155px;
-  text-align: center;
-  border-radius: 25px;
-  color: rgb(45, 1, 45);
-  background-color: white;
-}
-
 .flex-container5 {
   margin: 50px;
   display: flex;
@@ -86,6 +46,14 @@ body{
 
 .flex-container5 > td {
   border:1px solid black;
+}
+
+#features {
+	background-color: rgb(45, 1, 45);
+}
+
+.card {
+	padding: 10px;
 }
 
 .footer {
@@ -126,55 +94,7 @@ body{
 }	
 </style>
 
-<body>
-	<header class="header">
-        <div class="container">
-            <div class="header__inner">
-                <a href="#">
-                    <img class="img" src=".jpg" alt="" width="50">
-                </a>
-
-                <nav class="nav">
-                    <a class="nav__link" href="/chat">
-						<div style="margin-left: 200px;">
-							<button class="btn btn-outline-warning">
-								Dialogs
-							</button>
-						</div>
-					</a>
-                    <a class="nav__link" href="#">
-						<div>
-							<button class="btn btn-outline-warning">
-								To-do list
-							</button>
-						</div>	
-					</a>
-                    <a class="nav__link" href="/newsfeed">
-						<div>
-							<button class="btn btn-outline-warning">
-							News
-						    </button>
-					    </div>
-					</a>
-					<a class="nav__link" href="/register">
-						<div>
-							<button class="btn btn-outline-warning">
-							Sign Up
-						    </button>
-					    </div>
-					</a>
-					<a class="nav__link" href="/login">
-						<div>
-							<button class="btn btn-outline-warning">
-							Sign In
-						    </button>
-					    </div>
-					</a>
-                </nav>
-            </div>
-        </div>
-    </header>
-	
+<body>	
 	<div class="flex-container2">
 		<div style="color: white;">
 			<h6>
@@ -191,7 +111,7 @@ body{
 			</button>
 		</div>
 		<div>
-			<img src=".jpg" width="500px" height="400px">
+			<img src="https://i.dlpng.com/static/png/5451843-resource-allocation-project-planning-timesheet-tracking-dovico-planning-png-1729_1459_preview.png" width="500px" height="400px">
 		</div>
 	</div>
 
@@ -231,46 +151,46 @@ body{
 
 	<br>
 
-	<div class="flex-container4">
-		<div>
-			<br>
-			<img src=".jpg" width="150px" height="150px">
-			<p style="font-size: 20px;">
-				1
-			</p>
-			<p style="font-size: 10px;">
-				...
-			</p>
+	<div class="features justify-content-center" id="features">
+		<div class="container">
+		<div class="row row-cols-4">
+			<div class="col">
+				<div class="card" style="width: 15rem;">
+				<img src="https://cdn-icons-png.flaticon.com/512/3209/3209203.png" class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title">To-Do List</h5>
+					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="card" style="width: 15rem;">
+				<img src="https://cdn3.iconfinder.com/data/icons/mass-media-fourteen-black-and-white/128/internet-512.png" class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title">News</h5>
+					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="card" style="width: 15rem;">
+				<img src="https://icon-library.com/images/group-512_51989.png" class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title">Chat</h5>
+					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="card" style="width: 15rem;">
+				<img src="https://icon-library.com/images/planner-icon/planner-icon-19.jpg" class="card-img-top" alt="...">
+				<div class="card-body">
+					<h5 class="card-title">Planner</h5>
+					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+				</div>
+				</div>				
+			</div>
 		</div>
-		<div>
-			<br>
-			<img src=".jpg" width="150px" height="150px">
-			<p style="font-size: 20px;">
-				2
-			</p>
-			<p style="font-size: 10px;">
-				...
-			</p>
-		</div>
-		<div>
-			<br>
-			<img src=".jpg" width="150px" height="150px">
-			<p style="font-size: 20px;">
-				3
-			</p>
-			<p style="font-size: 10px;">
-				...
-			</p>
-		</div>
-		<div>
-			<br>
-			<img src=".jpg" width="150px" height="150px">
-			<p style="font-size: 20px;">
-				4
-			</p>
-			<p style="font-size: 10px;">
-				...
-			</p>
 		</div>
 	</div>
 
