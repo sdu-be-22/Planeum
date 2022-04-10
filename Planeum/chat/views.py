@@ -1,6 +1,7 @@
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from chat.models import Room, Message
+from django.views.decorators.csrf import csrf_protect
 # Create your views here.
 def chathome(request):
     return render(request, 'chathome.html')
@@ -25,6 +26,7 @@ def checkview(request):
         new_room.save()
         return redirect('/chat/'+room+'/?username='+username)
 
+@csrf_protect
 def send(request):
     message = request.POST['message']
     username = request.POST['username']
