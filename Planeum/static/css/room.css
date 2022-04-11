@@ -1,12 +1,17 @@
 body {
     margin: 0 auto;
     max-width: 800px;
+    max-height: 69vh;
     padding: 0 20px;
     background-color: #5200a5;
     background-image: linear-gradient(75deg, rgb(82,0,165), rgba(63,94,251,1));
   }
   #display{
-    background-color: #6f42c1
+    background-color: #6f42c1;
+    overflow-y: scroll;
+    max-height: 69vh;
+    display: flex;
+    flex-direction: column-reverse;
   }
   
   .container {

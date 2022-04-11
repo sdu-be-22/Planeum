@@ -21,6 +21,7 @@
           <input type="hidden" name="username" id="username" value="{{username}}"/>
           <input type="hidden" name="room_id" id="room_id" value="{{room_details.id}}"/>
           <input type="text" name="message" id="message" width="100px" />
+          <input type="file" name="myfile" id="f">
           <input type="submit" value="Send">
       </form>
   </div>
@@ -31,15 +32,19 @@
   <script type="text/javascript">
     $(document).on('submit','#post-form',function(e){
       e.preventDefault();
+      var data = new FormData();
+      data.append('username',$('#username').val());
+      data.append('room_id',$('#room_id').val());
+      data.append('message',$('#message').val());
+      data.append('username',$('#username').val());
+      data.append('mfile',document.getElementById("f").files[0]);
+      data.append("csrfmiddlewaretoken",$('input[name=csrfmiddlewaretoken]').val());
       $.ajax({
         type:'POST',
         url:'/chat/send',
-        data:{
-            username:$('#username').val(),
-            room_id:$('#room_id').val(),
-            message:$('#message').val(),
-            csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
-        },
+        data: data,
+        contentType:false,
+        processData:false,
         success: function(data){
           //alert(data)
         }
@@ -57,9 +62,17 @@
             success: function(response){
                 console.log(response);
                 $("#display").empty();
-                for (var key in response.messages)
+                for (var key in response.messages.reverse())
                 {
-                    var temp="<div class='container darker'><b>"+response.messages[key].user+"</b><p>"+response.messages[key].value+"</p><span class='time-left'>"+response.messages[key].date+"</span></div>";
+                    var img = response.messages[key].file;
+                    
+                    var temp="<div class='container darker'>";
+                    temp += "<b>"+response.messages[key].user+"</b>";
+                    temp += "<p>"+response.messages[key].value+"</p>";
+                    temp += "<img width=100 height=100 src=../../../../media/"+img+"></img>";
+                    
+                    temp += "<span class='time-left'>"+response.messages[key].date+"</span>";
+                    temp += "</div>";
                     $("#display").append(temp);
                 }
             },
