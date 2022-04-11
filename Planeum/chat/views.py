@@ -6,9 +6,8 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
-@login_required
-def chathome(request):
-    return render(request, 'chathome.html')
+
+
 
 @login_required
 def room(request, room):
@@ -19,7 +18,8 @@ def room(request, room):
         'room':room,
         'room_details':room_details
     })
-
+    
+@login_required
 def chathome(request):
     rooms = Room.objects.all()
     return render(request,'chathome.html',{'allrooms':rooms})
