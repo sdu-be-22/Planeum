@@ -30,7 +30,8 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://hemant-to-do.herokuapp.com'
+    'https://hemant-to-do.herokuapp.com',
+    'https://planeum.herokuapp.com'
 ]
 
 # Application definition
