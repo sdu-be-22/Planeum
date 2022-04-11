@@ -11,19 +11,23 @@
 <div style=" color:white;">
     <h2>Chat</h2>
 </div>
-
-
 <div class="container" id="cont">
 
     <form id="post-form" method="POST" action="checkview">
         {% csrf_token %}
-        
           <label>Room Name</label>
           <input type="text" name="room_name" id="room_name" width="100px"/>
-          <label>Username</label>
-          <input type="text" name="username" id="username" width="100px"/>
-          <input type="submit" id="submit" value="Enter Room" >
-        
+          <label>Select existing</label>
+          <div style="display: flex; justify-content:center;">
+            <select name="select_room" id="select_room">
+              <option value=''>none</option>
+              {%for r in allrooms %}
+                <option value="{{r.name}}">{{r.name}}</option>
+              {%endfor%}
+            </select>
+            <button>+</button>
+          </div>
+          <input type="submit" id="submit" value="Enter Room">       
     </form>
 </div>
 

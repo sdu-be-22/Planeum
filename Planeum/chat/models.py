@@ -3,7 +3,7 @@ from datetime import datetime
 
 # Create your models here.
 class Room(models.Model):
-    name = models.CharField(max_length=1000)
+    name = models.CharField(max_length=1000, blank=False, null=False)
 class Message(models.Model):
     value = models.CharField(max_length=1000000)
     date = models.DateField(default=datetime.now, blank=True)

@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from django.contrib.auth.decorators import login_required
 from todo.views import addTodoView, todoappView
 
 urlpatterns = [
@@ -23,7 +23,7 @@ urlpatterns = [
     path('', include('home.urls')),
     path('register/', include('register.urls')),
     path('login/', include('login.urls')),
-    path('chat/', include('chat.urls')),
+    path('chat/',include('chat.urls')),
     path('newsfeed/', include('newsfeed.urls')),
     path('accounts/', include('allauth.urls')),
     path('todo/', include('todo.urls')),

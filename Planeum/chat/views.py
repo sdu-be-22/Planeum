@@ -1,12 +1,16 @@
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, HttpResponseBadRequest, JsonResponse
 from django.shortcuts import redirect, render
 from Planeum.settings import MEDIA_URL
 from chat.models import Room, Message
 from django.views.decorators.csrf import csrf_protect
+from django.contrib.auth.decorators import login_required
 # Create your views here.
+
+@login_required
 def chathome(request):
     return render(request, 'chathome.html')
 
+@login_required
 def room(request, room):
     username = request.GET.get('username')
     room_details = Room.objects.get(name=room)
@@ -16,16 +20,31 @@ def room(request, room):
         'room_details':room_details
     })
 
-def checkview(request):
-    room = request.POST['room_name']
-    username = request.POST['username']
+def chathome(request):
+    rooms = Room.objects.all()
+    return render(request,'chathome.html',{'allrooms':rooms})
 
-    if Room.objects.filter(name=room).exists():
-        return redirect('/chat/'+room+'/?username='+username)
-    else:
-        new_room = Room.objects.create(name=room)
-        new_room.save()
-        return redirect('/chat/'+room+'/?username='+username)
+def checkview(request):
+    typed = request.POST['room_name']
+    selected = request.POST['select_room']
+
+    if typed != '':
+        path = '/chat/'+typed+'/?username='+request.user.username
+        if Room.objects.filter(name=typed).exists():
+            return HttpResponseBadRequest("Room already exists")
+        else:
+            new_room = Room.objects.create(name=typed)
+            new_room.save()
+            return redirect(path)
+    elif selected != '':
+        path = '/chat/'+selected+'/?username='+request.user.username
+        if Room.objects.filter(name=selected).exists():
+            return redirect(path)
+        else:
+            new_room = Room.objects.create(name=selected)
+            new_room.save()
+            return redirect(path)
+    else: return chathome(request)
 
 @csrf_protect
 def send(request):
@@ -36,7 +55,8 @@ def send(request):
     new_message = Message.objects.create(value=message, user=username, room=room_id, file=f)
     new_message.save()
     return HttpResponse("Message send successfuly")
-    
+
+
 def get_messages(request, room):
     room_details = Room.objects.get(name=room)
 
