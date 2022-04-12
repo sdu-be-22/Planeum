@@ -33,19 +33,19 @@ body {
     display: table;
   }
   
-  .container img {
+  /* .container img {
     float: left;
     max-width: 60px;
     width: 100%;
     margin-right: 20px;
     border-radius: 50%;
-  }
+  } */
   
-  .container img.right {
+  /* .container img.right {
     float: right;
     margin-left: 20px;
     margin-right:0;
-  }
+  } */
   
   .time-right {
     float: right;
@@ -83,4 +83,12 @@ body {
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 20px;
+  }
+  img{
+    min-height:100px;
+    min-width:100px;
+    height:50%;
+    width: 50%;
+    max-width: 300px;
+    max-height: 300px;
   }
