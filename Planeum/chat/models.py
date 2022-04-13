@@ -12,4 +12,4 @@ class Message(models.Model):
     date = models.DateField(default=datetime.now, blank=True)
     user = models.CharField(max_length=1000)
     room = models.CharField(max_length=1000)
-    file = models.ImageField(upload_to="./", blank=True)
+    file = models.FileField(upload_to="./", blank=True)
