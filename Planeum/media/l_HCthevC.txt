@@ -1,0 +1,6 @@
+Написать учителю по туркишу о акке turkceoculu
+russian
+web - django
+english
+database
+algo
