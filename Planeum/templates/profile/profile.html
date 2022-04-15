@@ -1,0 +1,114 @@
+{% extends "header.html" %}
+
+{% block content %}
+
+<style>
+body{
+    background-image: linear-gradient(75deg, rgb(82,0,165), rgba(63,94,251,1));
+    color: #000;
+}
+
+.profiletitle{
+    color: #fff;
+}
+
+.textarea{
+    width:100%;
+    height:100%;
+}
+
+.card-body{
+    color: #000;
+}
+
+.time {
+    font-size: 10px !important
+    }
+</style>    
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-3 col-sm-6">
+            <a href="{% url 'home' %}" class="btn btn-light">Back</a>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-3">
+        <div class="profiletitle">
+            <h1>Profile</h1>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-5">
+        <div class="card shadow-sm col-md-8 col-sm-12 border-bottom px-5 pt-3">
+            <div class="row">
+                <div class="col mb-3">
+                <img src="{{ profile.picture.url }}" class="rounded mx-auto" width="250" height="250" />
+                </div>
+                <div class="col">
+                {% if profile.name %}
+                <h3 class="py-4">{{ profile.name }}
+                    <span>
+                        {% if request.user == user %}
+                            <a href="{% url 'profile-edit' profile.pk %}" style="color: #333"><i class="bi bi-pencil-square"></i></a>
+                        {% endif %}
+                    </span>
+                    {% else %}
+                    <h3 class="py-4">{{ user.username }}
+                        <span>
+                            {% if request.user == user %}
+                                <a href="{% url 'profile-edit' profile.pk %}" style="color: #333"><i class="bi bi-pencil-square"></i></a>
+                            {% endif %}
+                        </span>
+                    </h3>
+                    {% endif %}
+                </h3>
+
+            {% if profile.location %}
+            <p>{{ profile.location }}</p>
+            {% endif %}
+
+            {% if profile.birth_date %}
+            <p>{{ profile.birth_date }}</p>
+            {% endif %}
+
+            {% if profile.bio %}
+            <p><strong>{{ profile.bio }}</strong></p>
+            {% endif %}
+            </div>
+            </div>
+        </div>
+    </div>
+
+    {% for post in posts %}
+    <div class="row justify-content-center mt-5">
+        <div class="card col-md-8 col-sm-12">
+            <div class="card-body">
+            <h4 class="card-title"><a style="text-decoration: none" class="text-primary" href="{% url 'profile' post.author.profile.pk %}"><strong>@{{ post.author }}</strong></a> <br> <span class="text-black-50 time">{{ post.created_on }}</span></h4>
+            <div class="position-relative">
+            <p class="card-text">{{ post.body }}</p>
+            <a class="stretched-link" href="{% url 'post-detail' post.pk %}"></a>
+            </div>
+
+            <div class="d-flex flex-row">
+                <form method="POST" action="{% url 'like' post.pk %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.path }}">
+                    <button style="background-color: transparent; border: none; box-shadow: none;" type="submit">
+                        <i class="bi bi-hand-thumbs-up-fill"> <span>{{ post.likes.all.count }}</span></i>
+                    </button>
+                </form>
+
+                <form method="POST" action="{% url 'dislike' post.pk %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.path }}">
+                    <button style="background-color: transparent; border: none; box-shadow: none;" type="submit">
+                        <i class="bi bi-hand-thumbs-down-fill"> <span>{{ post.dislikes.all.count }}</span></i>
+                    </button>
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}

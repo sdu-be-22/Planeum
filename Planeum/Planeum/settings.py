@@ -45,6 +45,8 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 INSTALLED_APPS = [
+    'userprofile',
+    
     'todo',
 
     'newsfeed',
@@ -150,6 +152,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 STATICFILES_DIRS = [
    os.path.join(BASE_DIR, "static"),
 ]
@@ -166,6 +170,3 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 import django_heroku 
 django_heroku.settings(locals()) 
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
