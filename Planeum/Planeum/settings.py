@@ -21,6 +21,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
+DEFAULT_AUTO_FIELD='django.db.models.AutoField'
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-j2%e&1=&^ibt=1a2n)!pqc3y4_v==wj2f&f+&u39nz0yl&$o*('
 
@@ -47,7 +49,8 @@ AUTHENTICATION_BACKENDS = [
 INSTALLED_APPS = [
     'userprofile',
     
-    'todo',
+    #'todo',
+    'todoapp.apps.TodoappConfig',
 
     'newsfeed',
     'chat',
