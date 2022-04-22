@@ -10,7 +10,7 @@ def index(request):
     form = JobForm(request.POST or None)
     if form.is_valid():
         form.save()
-        return HttpResponseRedirect('')
+        return HttpResponseRedirect('list')
 
     context = {
         'form' : form,
