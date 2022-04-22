@@ -1,7 +1,9 @@
 from django.shortcuts import render
+from django.db.models import Q 
 from django.urls import reverse_lazy
 from django.views import View
 from .models import Post, Comment
+from userprofile.models import UserProfile
 from multiprocessing import context
 from .forms import PostForm, CommentForm
 from django.views.generic.edit import UpdateView, DeleteView
@@ -138,3 +140,16 @@ class AddDislike(LoginRequiredMixin, View):
 
         next = request.POST.get('next', '/')
         return HttpResponseRedirect(next)    
+
+class UserSearch(View):
+    def get(self, request, *args, **kwargs):
+        query = self.request.GET.get('query')
+        profile_list = UserProfile.objects.filter(
+            Q(user__username__icontains=query)
+        )
+
+        context = {
+            'profile_list': profile_list,
+        }
+
+        return render(request, 'search.html', context) 
