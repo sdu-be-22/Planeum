@@ -37,14 +37,6 @@
 			</li>
 			</ul>
 
-			<form class="d-flex" method="GET" action="{%url 'profile-search'%}" >
-				<div class="input-group">
-				  <span class="input-group-text" id="basic-addon1">@</span>
-				  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" name="query" value="{{ request.GET.query }}">
-				  <button style="border: none; background-color: white; box-shadow: none" type="submit"><i class="fas fa-search"></i></button>
-				</div>
-			  </form>
-
 			{% if user.is_authenticated %}
 			<style>
 				#signup{
@@ -61,7 +53,7 @@
 					<i class="bi bi-person-workspace"></i>
 					</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					<a class="dropdown-item" href="{% url 'profile' user.profile.pk %}">Profile</a>
+					<a class="dropdown-item" href="{% url 'profile' request.user.profile.pk %}">Profile</a>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="{% url 'account_logout' %}">Sign Out</a>
 					</div>

@@ -16,8 +16,9 @@ class PostListView(LoginRequiredMixin, View):
     def get(self,request, *args, **kwargs):
         posts = Post.objects.all().order_by('-created_on')
         form = PostForm()
-        context = {'post_list':posts,
-                   'form': form,
+        context = {
+            'post_list':posts,
+            'form': form,
         }
         return render(request, 'newsfeed/post-list.html', context)
 
@@ -72,6 +73,28 @@ class PostDetailView(LoginRequiredMixin, View):
 
         return render(request, 'newsfeed/post-detail.html', context)
     
+class PostEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Post
+    fields = ['body']
+    template_name = 'newsfeed/post_edit.html'
+    
+    def get_success_url(self):
+        pk = self.kwargs['pk']
+        return reverse_lazy('post-detail', kwargs={'pk': pk})
+    
+    def test_func(self):
+        post = self.get_object()
+        return self.request.user == post.author
+
+class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Post
+    template_name = 'newsfeed/post_delete.html'
+    success_url = reverse_lazy('newsfeed')
+
+    def test_func(self):
+        post = self.get_object()
+        return self.request.user == post.author       
+    
 
 class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Comment
@@ -80,6 +103,10 @@ class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def get_success_url(self):
         pk = self.kwargs['post_pk']
         return reverse_lazy('post-detail', kwargs={'pk':pk})
+    
+    def test_func(self):
+        post = self.get_object()
+        return self.request.user == post.author
 
 class AddLike(LoginRequiredMixin, View):
     def post(self, request, pk, *args, **kwargs):
