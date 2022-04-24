@@ -1,4 +1,5 @@
 {% extends "header.html" %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 
@@ -23,7 +24,14 @@ body{
 
 .time {
     font-size: 10px !important
-    }
+}
+
+.post-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
 </style>    
 
 <div class="container">
@@ -64,16 +72,34 @@ body{
                 </h3>
 
             {% if profile.location %}
-            <p>{{ profile.location }}</p>
+            <p>Country/City: <strong>{{ profile.location }}</strong></p>
             {% endif %}
 
             {% if profile.birth_date %}
-            <p>{{ profile.birth_date }}</p>
+            <p>Birthday: <strong>{{ profile.birth_date }}</strong></p>
             {% endif %}
 
             {% if profile.bio %}
             <p><strong>{{ profile.bio }}</strong></p>
             {% endif %}
+
+            <br>
+
+            <div class="mb-3">
+                <a href="{% url 'list-followers' profile.pk %}" class="post-link" style="text-decoration: none;">Followers: {{ num_of_followers }}</a>
+                {% if is_following %}
+                <form method="POST" action="{% url 'remove-follower' profile.pk %}">
+                    {% csrf_token %}
+                    <button class="btn btn-outline-danger" type="submit">Unfollow</button>
+                </form>
+                {% else %}
+                <form method="POST" action="{% url 'add-follower' profile.pk %}">
+                    {% csrf_token %}
+                    <button class="btn btn-outline-primary" type="submit">Follow</button>
+                </form>
+                {% endif %}
+            </div>    
+
             </div>
             </div>
         </div>
@@ -83,8 +109,11 @@ body{
     <div class="row justify-content-center mt-5">
         <div class="card col-md-8 col-sm-12">
             <div class="card-body">
-            <h4 class="card-title"><a style="text-decoration: none" class="text-primary" href="{% url 'profile' post.author.profile.pk %}"><strong>@{{ post.author }}</strong></a> <br> <span class="text-black-50 time">{{ post.created_on }}</span></h4>
+            <h4 class="card-title"><a href="{% url 'profile' post.author.profile.pk %}"><img class="rounded-circle post-img" height="30" width="30" src="{{ post.author.profile.picture.url }}" /></a><a style="text-decoration: none" class="text-primary" href="{% url 'profile' post.author.profile.pk %}"><strong>@{{ post.author }}</strong></a> <br> <span class="text-black-50 time">{{ post.created_on }}</span></h4>
             <div class="position-relative">
+                {% if post.image %}
+                  <img src="{{ post.image.url }}" class="post-image" />
+                {% endif %}
             <p class="card-text">{{ post.body }}</p>
             <a class="stretched-link" href="{% url 'post-detail' post.pk %}"></a>
             </div>

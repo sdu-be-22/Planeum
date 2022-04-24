@@ -21,6 +21,18 @@ body{
 .time {
     font-size: 10px !important
     }
+
+.post-img {
+	float: left;
+	margin-right: 1rem;
+}    
+
+.post-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
 </style>    
 
 <div class="container">
@@ -37,7 +49,7 @@ body{
 
     <div class="row justify-content-center mt-3 mb-5">
         <div class="col-md-5 col-sm-12 border-bottom">
-            <form method="POST">
+            <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form | crispy }}
                 <div class="row justify-content-center mt-3 mb-5">
@@ -49,10 +61,18 @@ body{
 
     {% for post in post_list %}
     <div class="row justify-content-center mt-3">
-        <div class="card col-md-5 col-sm-12 position-relative">
+        <div class="card col-md-8 col-sm-12 position-relative">
             <div class="card-body">
-            <h4 class="card-title"><strong>@{{ post.author }}</strong></a> <br> <span class="text-black-50 time">{{ post.created_on }}</span></h4>
+            <h4 class="card-title">
+            <strong>
+                <img class="rounded-circle post-img" height="30" width="30" src="{{ post.author.profile.picture.url }}" />@{{ post.author }}
+            </strong> 
+            </h4>
+            <span class="text-black-50 time">{{ post.created_on }}</span>
             <div class="position-relative">
+                {% if post.image %}
+                  <img src="{{ post.image.url }}" class="post-image" />
+                {% endif %}
             <p class="card-text">{{ post.body }}</p>
             <a class="stretched-link" href="{% url 'post-detail' post.pk %}"></a>
             </div>

@@ -1,7 +1,9 @@
 from django.shortcuts import render
+from django.db.models import Q 
 from django.urls import reverse_lazy
 from django.views import View
 from .models import Post, Comment
+from userprofile.models import UserProfile
 from multiprocessing import context
 from .forms import PostForm, CommentForm
 from django.views.generic.edit import UpdateView, DeleteView
@@ -14,14 +16,15 @@ class PostListView(LoginRequiredMixin, View):
     def get(self,request, *args, **kwargs):
         posts = Post.objects.all().order_by('-created_on')
         form = PostForm()
-        context = {'post_list':posts,
-                   'form': form,
+        context = {
+            'post_list':posts,
+            'form': form,
         }
         return render(request, 'newsfeed/post-list.html', context)
 
     def post(self, request, *args, **kwargs):
         posts = Post.objects.all().order_by('-created_on')
-        form = PostForm(request.POST)
+        form = PostForm(request.POST, request.FILES)
 
         if form.is_valid():
             new_post = form.save(commit=False)
@@ -70,6 +73,28 @@ class PostDetailView(LoginRequiredMixin, View):
 
         return render(request, 'newsfeed/post-detail.html', context)
     
+class PostEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = Post
+    fields = ['body']
+    template_name = 'newsfeed/post_edit.html'
+    
+    def get_success_url(self):
+        pk = self.kwargs['pk']
+        return reverse_lazy('post-detail', kwargs={'pk': pk})
+    
+    def test_func(self):
+        post = self.get_object()
+        return self.request.user == post.author
+
+class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Post
+    template_name = 'newsfeed/post_delete.html'
+    success_url = reverse_lazy('newsfeed')
+
+    def test_func(self):
+        post = self.get_object()
+        return self.request.user == post.author       
+    
 
 class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Comment
@@ -78,6 +103,10 @@ class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def get_success_url(self):
         pk = self.kwargs['post_pk']
         return reverse_lazy('post-detail', kwargs={'pk':pk})
+    
+    def test_func(self):
+        post = self.get_object()
+        return self.request.user == post.author
 
 class AddLike(LoginRequiredMixin, View):
     def post(self, request, pk, *args, **kwargs):
@@ -138,3 +167,16 @@ class AddDislike(LoginRequiredMixin, View):
 
         next = request.POST.get('next', '/')
         return HttpResponseRedirect(next)    
+
+class UserSearch(View):
+    def get(self, request, *args, **kwargs):
+        query = self.request.GET.get('query')
+        profile_list = UserProfile.objects.filter(
+            Q(user__username__icontains=query)
+        )
+
+        context = {
+            'profile_list': profile_list,
+        }
+
+        return render(request, 'search.html', context) 
