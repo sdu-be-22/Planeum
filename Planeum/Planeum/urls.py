@@ -30,10 +30,12 @@ urlpatterns = [
     path('chat/',include('chat.urls')),
     path('newsfeed/', include('newsfeed.urls')),
     path('accounts/', include('allauth.urls')),
-    path('', include('todoapp.urls')),
-    path('todoapp/', include('todoapp.urls')),
-    path('todoapp/list/', include('todoapp.urls')),
+    #path('', include('todoapp.urls')),
+    #path('todoapp/', include('todoapp.urls')),
+    #path('todoapp/list/', include('todoapp.urls')),
     path('userprofile/', include('userprofile.urls')),
+    path('', include('base.urls')),
+    path('base/', include('base.urls')),
 ]
 
 if settings.DEBUG:
