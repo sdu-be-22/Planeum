@@ -23,7 +23,7 @@ Comments\
 Weather
 
 # Sceenshots
-![1] (Planeum/screens/Снимок экрана (64).png)
+![1] (screens/Снимок экрана (64).png)
 ![2] (Planeum/screens/Снимок экрана (65).png)
 ![3] (Planeum/screens/Снимок экрана (66).png)
 ![4] (Planeum/screens/Снимок экрана (67).png)
