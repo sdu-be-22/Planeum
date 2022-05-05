@@ -9,7 +9,7 @@ http://planeum.herokuapp.com/
 Darya Gomonova\
 Adil Pushpakov\
 Saiora Valiyeva\
-Askhat Al-Aziz\
+Al-Aziz Askhat\
 Sergazy Medeubekov
 
 # Functions
