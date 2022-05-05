@@ -13,7 +13,6 @@ Al-Aziz Askhat\
 Sergazy Medeubekov
 
 # Functions
-User Search\
 Messages\
 Calendar\
 To-do list\
