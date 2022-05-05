@@ -24,13 +24,13 @@ Weather
 
 # Sceenshots
 ![1](https://github.com/sdu-be-22/Planeum/blob/main/screens/Снимок%20экрана%20(64).png)
-![2](Planeum/screens/Снимок экрана (65).png)
-![3](Planeum/screens/Снимок экрана (66).png)
-![4](Planeum/screens/Снимок экрана (67).png)
-![5](Planeum/screens/Снимок экрана (68).png)
-![6](Planeum/screens/Снимок экрана (69).png)
-![7](Planeum/screens/Снимок экрана (70).png)
-![8](Planeum/screens/Снимок экрана (71).png)
+![2](https://github.com/sdu-be-22/Planeum/blob/main/screens/Снимок%20экрана%20(65).png)
+![3](https://github.com/sdu-be-22/Planeum/blob/main/screens/Снимок%20экрана%20(66).png)
+![4](https://github.com/sdu-be-22/Planeum/blob/main/screens/Снимок%20экрана%20(67).png)
+![5](https://github.com/sdu-be-22/Planeum/blob/main/screens/Снимок%20экрана%20(68).png)
+![6](https://github.com/sdu-be-22/Planeum/blob/main/screens/Снимок%20экрана%20(69).png)
+![7](https://github.com/sdu-be-22/Planeum/blob/main/screens/Снимок%20экрана%20(70).png)
+![8](https://github.com/sdu-be-22/Planeum/blob/main/screens/Снимок%20экрана%20(71).png)
 
 
 
