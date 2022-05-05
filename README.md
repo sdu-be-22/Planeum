@@ -23,14 +23,14 @@ Comments\
 Weather
 
 # Sceenshots
-![1] (screens/Снимок экрана (64).png)
-![2] (Planeum/screens/Снимок экрана (65).png)
-![3] (Planeum/screens/Снимок экрана (66).png)
-![4] (Planeum/screens/Снимок экрана (67).png)
-![5] (Planeum/screens/Снимок экрана (68).png)
-![6] (Planeum/screens/Снимок экрана (69).png)
-![7] (Planeum/screens/Снимок экрана (70).png)
-![8] (Planeum/screens/Снимок экрана (71).png)
+![1](screens/Снимок экрана (64).png)
+![2](Planeum/screens/Снимок экрана (65).png)
+![3](Planeum/screens/Снимок экрана (66).png)
+![4](Planeum/screens/Снимок экрана (67).png)
+![5](Planeum/screens/Снимок экрана (68).png)
+![6](Planeum/screens/Снимок экрана (69).png)
+![7](Planeum/screens/Снимок экрана (70).png)
+![8](Planeum/screens/Снимок экрана (71).png)
 
 
 
