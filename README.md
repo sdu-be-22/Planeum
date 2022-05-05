@@ -10,7 +10,7 @@ Darya Gomonova\
 Adil Pushpakov\
 Saiora Valiyeva\
 Askhat Al-Aziz\
-Sergazy Medeubekov\
+Sergazy Medeubekov
 
 # Functions
 User Search\
@@ -21,7 +21,7 @@ Newsfeed\
 Posts\
 Likes\
 Comments\
-Weather\
+Weather
 
 # Sceenshots
 
