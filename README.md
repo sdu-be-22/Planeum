@@ -6,22 +6,22 @@ https://miro.com/welcomeonboard/d0RqblBrTEV5NkVHbUR6ZFlLeGpmeUt6MEpNTjNBNkJGdnZ1
 # Heroku link
 http://planeum.herokuapp.com/
 # Team Members
-Darya Gomonova
-Adil Pushpakov
-Saiora Valiyeva
-Askhat Al-Aziz
-Sergazy Medeubekov
+Darya Gomonova/
+Adil Pushpakov/
+Saiora Valiyeva/
+Askhat Al-Aziz/
+Sergazy Medeubekov/
 
 # Functions
-User Search
-Messages
-Calendar
-To-do list
-Newsfeed
-Posts
-Likes
-Comments
-Weather
+User Search/
+Messages/
+Calendar/
+To-do list/
+Newsfeed/
+Posts/
+Likes/
+Comments/
+Weather/
 
 # Sceenshots
 
