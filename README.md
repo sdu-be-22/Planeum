@@ -23,7 +23,7 @@ Comments\
 Weather
 
 # Sceenshots
-![1](screens/Снимок экрана (64).png)
+![1](https://github.com/sdu-be-22/Planeum/blob/main/screens/Снимок%20экрана%20(64).png)
 ![2](Planeum/screens/Снимок экрана (65).png)
 ![3](Planeum/screens/Снимок экрана (66).png)
 ![4](Planeum/screens/Снимок экрана (67).png)
