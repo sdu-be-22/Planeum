@@ -1,6 +1,9 @@
 # Descriptions
 Planeum is the web-application for those who want to plan their work, errands, tasks and goals. In our app you can plan and set goals, as well as correspond with colleagues and friends to spend your time more productively. In your posts you can talk about what you've done and in the comments people will give you tips to improve your progress. 
 
+# Presentation
+[Canva link](https://www.canva.com/design/DAFA98x_VQk/FEAHs1Wyve54ZPPlj-mx6g/view?utm_content=DAFA98x_VQk&utm_campaign=designshare&utm_medium=link&utm_source=publishpresent)
+
 # Project Plan 
 [Miro](https://miro.com/welcomeonboard/d0RqblBrTEV5NkVHbUR6ZFlLeGpmeUt6MEpNTjNBNkJGdnZ1V09ySFdvMUR2N3Y1cU9HWlRUa3dXajRFSlpOOXwzMDc0NDU3MzY0MTgwODk3MTIw?invite_link_id=987498562083)
 # Heroku link
