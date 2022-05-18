@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'userprofile',
     
     #'todo',
-    'todoapp.apps.TodoappConfig',
+    'base.apps.BaseConfig',
+    #'todoapp.apps.TodoappConfig',
 
     'newsfeed',
     'chat',
